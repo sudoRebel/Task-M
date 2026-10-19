@@ -1,0 +1,11 @@
+Task-M/
+├── include/
+│   ├── operations.hpp   # Process control signals (kill, suspend, resume)
+│   ├── processes.hpp    # Process scanning and /proc parser
+│   └── utils.hpp        # Utility functions (getValue, etc.)
+├── src/
+│   ├── operations.cpp
+│   ├── processes.cpp
+│   └── utils.cpp
+├── compile_flags.txt    # Clangd / editor configuration
+└── README.md
