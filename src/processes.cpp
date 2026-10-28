@@ -2,6 +2,7 @@
 #include "utils.hpp"
 #include <algorithm>
 #include <filesystem>
+#include <utility> // std::move
 
 namespace fs = std::filesystem;
 
@@ -25,20 +26,12 @@ std::vector<ProcessInfo> getProcesses() {
     try {
       ProcessInfo proc;
       proc.pid = std::stoi(pidStr);
+      proc.ppid = std::stoi(getValue(statusPath, "PPid:", true));
+      proc.vm_rss = std::stoull(getValue(statusPath, "VmRSS:", true));
+      proc.vm_size = std::stoull(getValue(statusPath, "VmSize:", true));
+      proc.name = getValue(statusPath, "Name:", false);
 
-      pid_t ppid = std::stoi(getValue(statusPath, "PPid:", true));
-      proc.ppid = ppid;
-
-      std::string vm_rss = getValue(statusPath, "VmRSS:", true);
-      proc.vm_rss = std::stoll(vm_rss);
-
-      std::string vm_size = getValue(statusPath, "VmSize:", true);
-      proc.vm_size = std::stoll(vm_size);
-
-      std::string name = getValue(statusPath, "Name:", false);
-      proc.name = name;
-
-      processList.push_back(proc);
+      processList.push_back(std::move(proc));
     } catch (...) {
       continue;
     }
