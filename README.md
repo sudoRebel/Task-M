@@ -1,4 +1,4 @@
-# Task-M
+# Taskloom
 
 A lightweight C++ task manager library for Linux.
 
@@ -10,7 +10,7 @@ A lightweight C++ task manager library for Linux.
 ### How to setup
 
 ```bash
-git clone https://github.com/sudoRebel/Task-M.git && cd Task-M
+git clone https://github.com/sudoRebel/Taskloom.git && cd Taskloom
 ```
 
 ## Utility tools
